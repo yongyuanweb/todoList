@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todoListDB", {
+mongoose.connect("mongodb+srv://admin-yongyuan:test123@cluster0-ziele.mongodb.net/todoListDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -146,7 +146,11 @@ list.findOne({name:customListName},function(err,foundList){
 app.get("/about", function(req, res) {
   res.render("about");
 });
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server started");
 });
